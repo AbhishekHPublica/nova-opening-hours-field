@@ -41,7 +41,16 @@
 </template>
   
 <script>
+import AddButton from './AddButton';
+import RemoveButton from './RemoveButton';
+import IntervalInput from "./IntervalInput";
+import TableColumn from "./TableColumn";
+import TableHeader from "./TableHeader";
+import {editableProp, useTextInputsProp, weekProp} from "../src/props";
+import {capitalizeFirstLetter} from "../src/func";
 export default {
+    components: { AddButton, RemoveButton, IntervalInput, TableColumn, TableHeader },
+
     props: {
         week: {
             type: Array,
@@ -57,6 +66,9 @@ export default {
         },
         editable: Boolean,
         useTextInputs: Boolean,
+        ...weekProp,
+        ...editableProp,
+        ...useTextInputsProp,
     },
     methods: {
         addInterval(index, day) {
@@ -77,6 +89,8 @@ export default {
                 end: previousInterval.end,
             });
         },
-        },
+        capitalizeFirstLetter,
+    },
+    emits: ['updateInterval', 'removeInterval', 'addInterval', 'removeAllIntervals'],
 };
 </script>  
