@@ -35,11 +35,20 @@ export default {
     emits: ['updateInterval', 'removeInterval'],
 
     data: function () {
+        let from = '09:00'; // default start time
+        let to = '20:00';   // default end time
+        console.log(this.intervalProp);
+        if (typeof this.intervalProp === 'string' && this.intervalProp.includes('-')) {
+            const [start, end] = this.intervalProp.split('-');
+            from = start;
+            to = end;
+        }
+
         return {
             interval: this.intervalProp,
-            from: this.intervalProp.split('-')[0],
-            to: this.intervalProp.split('-')[1]
-        }
+            from: from,
+            to: to
+        };
     },
 
 
