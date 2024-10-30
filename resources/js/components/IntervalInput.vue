@@ -36,7 +36,6 @@ export default {
 
     data: function () {
         let intervalString = this.intervalProp;
-        console.log(intervalString);
 
         // If intervalProp is an object, access its `interval` property
         if (typeof this.intervalProp === 'object' && this.intervalProp !== null) {
