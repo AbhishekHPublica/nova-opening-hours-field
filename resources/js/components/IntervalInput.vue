@@ -35,11 +35,22 @@ export default {
     emits: ['updateInterval', 'removeInterval'],
 
     data: function () {
-        return {
-            interval: this.intervalProp,
-            from: this.intervalProp.split('-')[0],
-            to: this.intervalProp.split('-')[1]
+        let intervalString = this.intervalProp;
+        console.log(intervalString);
+
+        // If intervalProp is an object, access its `interval` property
+        if (typeof this.intervalProp === 'object' && this.intervalProp !== null) {
+            intervalString = this.intervalProp.interval;
         }
+
+        // Split the interval string to get `from` and `to` times
+        const [from, to] = (intervalString || '09:00-20:00').split('-');
+
+        return {
+            interval: intervalString,
+            from,
+            to
+        };
     },
 
 
