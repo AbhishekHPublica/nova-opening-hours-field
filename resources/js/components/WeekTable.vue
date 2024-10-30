@@ -72,6 +72,7 @@ export default {
     },
     methods: {
         addInterval(index, day) {
+            console.log("Adding interval for:", day);
             const previousDayIndex = index > 0 ? index - 1 : null;
             let previousDayIntervals = null;
     
