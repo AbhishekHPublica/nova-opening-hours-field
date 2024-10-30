@@ -1,6 +1,7 @@
 <template>
     <Button
         state="default"
+        @click="$emit('click')"
     >
         <span class="px-1 font-bold text-xl">+</span>
     </Button>

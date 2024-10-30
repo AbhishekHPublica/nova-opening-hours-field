@@ -38,6 +38,9 @@ export default {
         let from = '09:00'; // default start time
         let to = '20:00';   // default end time
         console.log(this.intervalProp);
+        console.log(typeof this.intervalProp);
+        console.log(typeof this.intervalProp === 'string');
+        console.log(this.intervalProp.includes('-'));
         if (typeof this.intervalProp === 'string' && this.intervalProp.includes('-')) {
             const [start, end] = this.intervalProp.split('-');
             from = start;
