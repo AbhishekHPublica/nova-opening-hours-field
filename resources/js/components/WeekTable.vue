@@ -29,7 +29,7 @@
                         </div>
                     </table-column>
                     <table-column v-if="editable" class="text-right">
-                        <add-button @click="addInterval(index, day.day, $event)" />
+                        <add-button @click.prevent="$emit('addInterval', 'week', day.day)" />
                         <span v-if="day.intervals.length" class="ml-2">
                             <remove-button @click.prevent="$emit('removeAllIntervals', 'week', day.day)" />
                         </span>
@@ -71,26 +71,6 @@ export default {
         ...useTextInputsProp,
     },
     methods: {
-        addInterval(index, day, event) {
-            event.preventDefault();
-            console.log("Adding interval for:", index, day);
-            const previousDayIndex = index > 0 ? index - 1 : null;
-            let previousDayIntervals = null;
-    
-            if (previousDayIndex !== null) {
-                previousDayIntervals = this.week[previousDayIndex].intervals;
-            }
-            const defaultStart = '09:00';
-            const defaultEnd = '20:00';
-    
-            const previousInterval = previousDayIntervals && previousDayIntervals.length
-            ? previousDayIntervals[previousDayIntervals.length - 1]
-            : { start: defaultStart, end: defaultEnd };
-            this.week[index].intervals.push({
-                start: previousInterval.start,
-                end: previousInterval.end,
-            });
-        },
         capitalizeFirstLetter,
     },
     emits: ['updateInterval', 'removeInterval', 'addInterval', 'removeAllIntervals'],
